@@ -19,7 +19,7 @@
       var apiUrl = "api/chats";
       $.getJSON(apiUrl, function(data) {
         $.each(data, function(key, val) {
-          $('.listeMessage').append('<a href="chat.html?chatId=' + val.id + '">' + val.name + '</a>');
+          $('.listeMessage').append('<a href="api/chat?chatId=' + val.id + '">' + val.name + '</a> <br/>');
         });
       });
     });

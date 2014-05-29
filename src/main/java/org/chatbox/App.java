@@ -28,13 +28,20 @@ public class App {
 
 		Personne bob = new Personne("bob");
 
-		Chat roulette = new Chat(null, "miaou", null, Arrays.asList(bob));
-		Message m1 = new Message(null, "le premier message", roulette, bob);
+		Chat chat = new Chat(null, "miaou", null, Arrays.asList(bob));
+		Chat chat1 = new Chat(null, "miaou2", null, Arrays.asList(bob));
+		Chat chat2 = new Chat(null, "miaou3", null, Arrays.asList(bob));
+		
+		Message m1 = new Message(null, "le premier message", chat, bob);
 
 		entityManager.persist(bob);
-		entityManager.persist(roulette);
+		entityManager.persist(chat);
+		entityManager.persist(chat1);
+		entityManager.persist(chat2);
 		entityManager.persist(m1);
 
 		tx.commit();
+		
+		System.out.println("fin de chargement en base");
 	}
 }

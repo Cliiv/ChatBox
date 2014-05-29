@@ -36,7 +36,7 @@ public class ChatChatController {
 		/* Retrieve of object */
 		final Chat chat = em.find(Chat.class, idChat);
 		final Personne personne = chat.getPersonnes().get(0);
-		final Message message = new Message(null, "", chat, personne);
+		final Message message = new Message();
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("chat", chat);

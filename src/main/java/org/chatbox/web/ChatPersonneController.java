@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Personne Bean api.
+ * 
+ * @author ChatBox Corporation.
+ * @version 1.0 - 2014-05-28
+ */
 @Controller
 @RequestMapping("/personne")
 public class ChatPersonneController {
@@ -21,7 +27,6 @@ public class ChatPersonneController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Personne get(final @PathVariable("id") Long personneId) {
-		System.out.println("chat");
 		return (Personne) em.find(Personne.class, personneId);
 	}
 

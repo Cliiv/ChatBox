@@ -10,6 +10,12 @@ import org.chatbox.json.JsonChatId;
 import org.chatbox.json.JsonPersonneId;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+/**
+ * Message Bean.
+ * 
+ * @author ChatBox Corporation.
+ * @version 1.0 - 2014-05-28
+ */
 @XmlRootElement
 @Entity
 public class Message {

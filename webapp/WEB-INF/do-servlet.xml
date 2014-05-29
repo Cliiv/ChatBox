@@ -21,15 +21,16 @@ http://cxf.apache.org/schemas/jaxws.xsd
 http://www.springframework.org/schema/security 
 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<!--<context:component-scan base-package="org.chatbox.web"/>-->
+	<!--<context:component-scan base-package="org.chatbox.web"/> -->
 	<bean id="chatController" class="org.chatbox.web.ChatChatController"></bean>
 	<bean id="personneController" class="org.chatbox.web.ChatPersonneController"></bean>
 	<bean id="messageController" class="org.chatbox.web.ChatMessageController"></bean>
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
-   </bean>
+	</bean>
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

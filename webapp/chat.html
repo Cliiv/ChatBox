@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ChatBox</title>
+    <meta name="description" content="ChatBox Corporation">
+    <base href="/ChatBox/">
+  </head>
+
+  <body>
+    <div class="listeMessage"></div>
+    <div id="footer">
+      <p>&copy; ChatBox Corporation 2014</p>
+    </div>
+  <script type="text/javascript" src="vendor/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var apiUrl = "api/message?" + window.location.href.slice(window.location.href.indexOf('?') + 1);
+      $.getJSON(apiUrl, function(dataMessage) {
+        $.each(dataMessage, function(keyMessage, valMessage) {
+        	  $.getJSON("api/personne/" + valMessage.personne, function(dataPersonne) {
+       	        	$('.listeMessage').append(dataPersonne.name + " : ");
+       	        });
+              $('.listeMessage').append(valMessage.texte +"<br />");
+          });
+        });
+      });
+  </script>
+  </body>
+</html>

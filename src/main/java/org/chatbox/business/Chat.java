@@ -14,6 +14,12 @@ import org.chatbox.json.JsonListMessageId;
 import org.chatbox.json.JsonListPersonneId;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+/**
+ * Chat Bean.
+ * 
+ * @author ChatBox Corporation.
+ * @version 1.0 - 2014-05-28
+ */
 @XmlRootElement
 @Entity
 public class Chat {

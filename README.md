@@ -11,10 +11,4 @@ HSQLDB Data base setup :
 - mvn eclipse:eclipse -Dwtpversion=2.0
 - run the main class : App
 
-
-cd C:\hsqldb_1_8_1_3\hsqldb\lib
-
-java -cp hsqldb.jar org.hsqldb.Server
-
-java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
-
+Starting of HSQLDB is made by script startDB.bat

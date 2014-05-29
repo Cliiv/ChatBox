@@ -17,9 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Message Bean api.
+ * 
+ * @author ChatBox Corporation.
+ * @version 1.0 - 2014-05-28
+ */
 @Controller
 @RequestMapping("/message")
 public class ChatMessageController {
+	/** EntityManager that manage DB IO. */
 	final EntityManager em = ChatController.ENTITY_MANAGER;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -34,7 +41,7 @@ public class ChatMessageController {
 	public List<Message> getMessageSujet(
 			final @RequestParam(value = "chatId", required = true) Long idChat) {
 		final Chat chat = (Chat) em.find(Chat.class, idChat);
-		return chat.getMessages();
+		return chat != null ? chat.getMessages() : null;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

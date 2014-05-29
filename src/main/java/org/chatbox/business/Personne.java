@@ -5,6 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Personne Bean.
+ * 
+ * @author ChatBox Corporation.
+ * @version 1.0 - 2014-05-28
+ */
 @XmlRootElement
 @Entity
 public class Personne {

@@ -9,6 +9,13 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 
+/**
+ * Serializer for Message List Bean. Taking only the id instead of recursively
+ * exploring each attributes.
+ * 
+ * @author ChatBox Corporation.
+ * @version 1.0 - 2014-05-28
+ */
 public class JsonListMessageId extends JsonSerializer<List<Message>> {
 	@Override
 	public void serialize(List<Message> message, JsonGenerator jgen,

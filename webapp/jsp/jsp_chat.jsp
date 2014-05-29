@@ -15,7 +15,7 @@
 	function envoyerMessage() {
 		var messageInfo = {
 			"texte": $('#texte').val(),
-			"personne.idPersonne": $('#idPersonne').val(),
+			"personne.id": $('#idPersonne').val(),
 			"chat.id": $('#chatId').val()
 		};
 
@@ -36,10 +36,10 @@
 		<div style="float:left">
 			<form:form modelAttribute="newMessage" method="post">
 				<form:input path="texte" />
-				<input type="hidden" name="idPersonne" id="idPersonne" value="${personne.idPersonne}" />
+				<input type="hidden" name="idPersonne" id="idPersonne" value="${personne.id}" />
 				<input type="hidden" name="chatId" id="chatId" value="${chat.id}"/>
 			</form:form>
-			<a href="#" onClick="envoyerMessage();">Envoyer la purée</a>
+			<a href="#" onClick="envoyerMessage();">Envoyer le message</a>
 		</div>
 		<div>
 			<table>

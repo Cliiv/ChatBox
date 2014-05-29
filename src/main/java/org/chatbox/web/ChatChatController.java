@@ -1,5 +1,6 @@
 package org.chatbox.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,13 +12,10 @@ import javax.persistence.criteria.Root;
 import org.chatbox.business.Chat;
 import org.chatbox.business.Message;
 import org.chatbox.business.Personne;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -45,8 +43,39 @@ public class ChatChatController {
 		modelAndView.setViewName("jsp_chat");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/chats", method=RequestMethod.GET)
+	public ModelAndView getChat(final @RequestParam(value = "personneId", required = true) Long idPersonne){
+		/* Retrieve of object */
+		final Personne personne = em.find(Personne.class, idPersonne);
+		System.out.println(personne.getName());
+		
+		//Récupération des chats
+		final CriteriaBuilder criteria = em.getCriteriaBuilder();
+        CriteriaQuery<Chat> criteriaQuery = criteria.createQuery(Chat.class);
+        Root<Chat> rootEntry = criteriaQuery.from(Chat.class);
+        CriteriaQuery<Chat> all = criteriaQuery.select(rootEntry);
+        TypedQuery<Chat> allQuery = em.createQuery(all);
+        List<Chat> retour = allQuery.getResultList();
+        
+        List<Chat> chatsPersonne = new ArrayList<Chat>();
+        //Récupération des chats de la personne
+        for (Chat chat : retour){
+        	if (chat.getPersonnes().contains(personne)){
+        		System.out.println(chat.getName());
+        		chatsPersonne.add(chat);
+        	}
+        	
+        }
 
-	@RequestMapping(value = "/chats", method = RequestMethod.GET)
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("chatsPersonne", chatsPersonne);
+		modelAndView.addObject("personne", personne);
+		modelAndView.setViewName("jsp_lstChats");
+		return modelAndView;
+	}
+
+	/*@RequestMapping(value = "/chats", method = RequestMethod.GET)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public List<Chat> getMessageSujet() {
@@ -59,4 +88,5 @@ public class ChatChatController {
         List<Chat> retour = allQuery.getResultList();
         return retour;
 	}
+	*/
 }

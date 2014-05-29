@@ -23,7 +23,7 @@ public class JsonListPersonneId extends JsonSerializer<List<Personne>> {
 			JsonProcessingException {
 		jgen.writeStartArray();
 		for (Personne e : personne) {
-			jgen.writeString(Long.toString(e.getIdPersonne()));
+			jgen.writeString(Long.toString(e.getId()));
 		}
 		jgen.writeEndArray();
 	}

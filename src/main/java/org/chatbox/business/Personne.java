@@ -1,9 +1,14 @@
 package org.chatbox.business;
 
+import java.util.List;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -32,11 +37,11 @@ public class Personne {
 		this.name = name;
 	}
 
-	public Long getIdPersonne() {
+	public Long getId() {
 		return idPersonne;
 	}
 
-	public void setIdPersonne(final Long idPersonne) {
+	public void setId(final Long idPersonne) {
 		this.idPersonne = idPersonne;
 	}
 

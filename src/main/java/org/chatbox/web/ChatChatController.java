@@ -31,9 +31,9 @@ public class ChatChatController {
 	
 	@RequestMapping(value="/chat", method=RequestMethod.GET)
 	public ModelAndView get(final @RequestParam(value = "chatId", required = true) Long idChat){
-		System.out.println("ChatchatController, chat");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("chat", em.find(Chat.class, idChat));
+		System.out.println(em.find(Chat.class, idChat));
 		modelAndView.setViewName("jsp_chat");
 		return modelAndView;
 	}

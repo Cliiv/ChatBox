@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ page import="org.chatbox.business.Chat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,18 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-    <div class="listeMessage"></div>
-    <div id="footer">
-      <p>&copy; ChatBox Corporation 2014</p>
-    </div>
-  <script type="text/javascript" src="vendor/jquery.js"></script>
-  <script type="text/javascript">
-  for (var i = 0; i < chat.getMessages().lenght; i++) {
-	    String s = chat.getMessages(i);
-	    out.print(s);
-  }
-  </script>
-
+	<c:out value="chat.id" />
 </body>
 </html>

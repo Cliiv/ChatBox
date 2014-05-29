@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,11 +28,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class ChatChatController {
 	/** EntityManager that manage DB IO. */
 	final EntityManager em = ChatController.ENTITY_MANAGER;
-
-	@RequestMapping("/chat")
-	public ModelAndView lstChat() {
-		final ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("jsp_lstChats");
+	
+	@RequestMapping(value="/chat", method=RequestMethod.GET)
+	public ModelAndView get(final @RequestParam(value = "chatId", required = true) Long idChat){
+		System.out.println("ChatchatController, chat");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("chat", em.find(Chat.class, idChat));
+		modelAndView.setViewName("jsp_chat");
 		return modelAndView;
 	}
 
@@ -39,6 +42,7 @@ public class ChatChatController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public List<Chat> getMessageSujet() {
+		System.out.println("chatcontroller");
 		final CriteriaBuilder criteria = em.getCriteriaBuilder();
         CriteriaQuery<Chat> criteriaQuery = criteria.createQuery(Chat.class);
         Root<Chat> rootEntry = criteriaQuery.from(Chat.class);

@@ -32,27 +32,33 @@
 </head>
 <body>
 	<h1>Chat n°${chat.id}</h1>
-	<table>
-		<thead>
-			<tr>
-				<td>Personne</td>
-				<td>Message</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${chat.messages}" var="msg">
-				<tr>
-					<td>${msg.personne.name}</td>
-					<td>${msg.texte}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<form:form modelAttribute="newMessage" method="post">
-		<form:input path="texte" />
-		<input type="hidden" name="idPersonne" id="idPersonne" value="${personne.idPersonne}" />
-		<input type="hidden" name="chatId" id="chatId" value="${chat.id}"/>
-	</form:form>
-	<a href="#" onClick="envoyerMessage();">Envoyer la purée</a>
+	<div>
+		<div style="float:left">
+			<form:form modelAttribute="newMessage" method="post">
+				<form:input path="texte" />
+				<input type="hidden" name="idPersonne" id="idPersonne" value="${personne.idPersonne}" />
+				<input type="hidden" name="chatId" id="chatId" value="${chat.id}"/>
+			</form:form>
+			<a href="#" onClick="envoyerMessage();">Envoyer la purée</a>
+		</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<td>Personne</td>
+						<td>Message</td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${chat.messages}" var="msg">
+						<tr>
+							<td>${msg.personne.name}</td>
+							<td>${msg.texte}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

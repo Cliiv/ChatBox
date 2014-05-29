@@ -1,5 +1,6 @@
 package org.chatbox.business;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  */
 @XmlRootElement
 @Entity
+@Cacheable(false)
 public class Message {
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)

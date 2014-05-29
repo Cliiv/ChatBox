@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import org.chatbox.business.Chat;
 import org.chatbox.business.Message;
+import org.chatbox.business.Personne;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,5 +58,11 @@ public class ChatMessageController {
 			System.out.println(e.getMessage());
 			tx.rollback();
 		}
+
+		/* Registering object bean */
+		message.setChat(em.find(Chat.class, message.getChat().getId()));
+		message.setPersonne(em.find(Personne.class, message.getPersonne()
+				.getIdPersonne()));
+		message.getChat().addMessage(message);
 	}
 }

@@ -1,5 +1,6 @@
 package org.chatbox.business;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @Entity
+@Cacheable(false)
 public class Personne {
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)

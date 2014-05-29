@@ -59,7 +59,7 @@ public class ChatMessageController {
 			tx.rollback();
 		}
 
-		/* Registering object bean */
+		/* Registering object bean, permet de gérer les problèmes de cache */
 		message.setChat(em.find(Chat.class, message.getChat().getId()));
 		message.setPersonne(em.find(Personne.class, message.getPersonne()
 				.getIdPersonne()));

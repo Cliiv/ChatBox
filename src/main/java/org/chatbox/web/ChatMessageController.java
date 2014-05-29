@@ -9,8 +9,8 @@ import org.chatbox.business.Chat;
 import org.chatbox.business.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +46,7 @@ public class ChatMessageController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public void postMessage(final @RequestBody Message message) {
+	public void postMessage(@ModelAttribute Message message) {
 		final EntityTransaction tx = em.getTransaction();
 
 		tx.begin();

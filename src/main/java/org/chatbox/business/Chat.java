@@ -3,6 +3,7 @@ package org.chatbox.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Chat {
 	/** Subject of chat. */
 	String name;
 
-	@OneToMany(targetEntity = Message.class, mappedBy = "chat")
+	@OneToMany(targetEntity = Message.class, mappedBy = "chat", cascade = CascadeType.PERSIST)
 	private List<Message> messages;
 
 	@ManyToMany

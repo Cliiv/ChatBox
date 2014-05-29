@@ -9,6 +9,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.chatbox.business.Chat;
+import org.chatbox.business.Message;
+import org.chatbox.business.Personne;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +33,15 @@ public class ChatChatController {
 	
 	@RequestMapping(value="/chat", method=RequestMethod.GET)
 	public ModelAndView get(final @RequestParam(value = "chatId", required = true) Long idChat){
+		/* Retrieve of object */
+		final Chat chat = em.find(Chat.class, idChat);
+		final Personne personne = chat.getPersonnes().get(0);
+		final Message message = new Message(null, "", chat, personne);
+
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("chat", em.find(Chat.class, idChat));
-		System.out.println(em.find(Chat.class, idChat));
+		modelAndView.addObject("chat", chat);
+		modelAndView.addObject("newMessage", message);
+		modelAndView.addObject("personne", personne);
 		modelAndView.setViewName("jsp_chat");
 		return modelAndView;
 	}
@@ -48,6 +56,7 @@ public class ChatChatController {
         Root<Chat> rootEntry = criteriaQuery.from(Chat.class);
         CriteriaQuery<Chat> all = criteriaQuery.select(rootEntry);
         TypedQuery<Chat> allQuery = em.createQuery(all);
-        return allQuery.getResultList();
+        List<Chat> retour = allQuery.getResultList();
+        return retour;
 	}
 }
